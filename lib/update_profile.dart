@@ -1,0 +1,139 @@
+import 'package:flutter/material.dart';
+import 'package:homepage/homepage.dart';
+
+class UpdateProfilePage extends StatefulWidget{
+    const UpdateProfilePage({Key? key, required String userName, required String userProfilePicture}) : super(key: key);
+
+  @override
+  State<UpdateProfilePage> createState() => _UpdateProfilePageState();
+}
+
+class _UpdateProfilePageState extends State<UpdateProfilePage>{
+
+  bool changePage = false;
+
+  @override
+  void initState(){
+    super.initState();
+
+    setState(() {
+          
+        });
+  }
+
+  final _formKey = GlobalKey<FormState>();
+
+  // ignore: unused_field
+  late String _name, _userName, _email, _password, _confirmPassword, _address;
+
+  @override
+  Widget build(BuildContext context) {
+    if(changePage){
+      return const HomePage();
+    }
+    return
+    Scaffold(
+        appBar: 
+      AppBar(
+        // Display the back button in the app bar
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+setState(() {
+  changePage = !changePage;
+});           
+          },
+        ),
+        title: const Text('Update Profile'),
+      ),
+      body:  Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            TextFormField(
+              decoration: const InputDecoration(labelText: 'Name'),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your name';
+                }
+                return null;
+              },
+              onSaved: (value) => _name = value!,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: 'User Name'),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your user name';
+                }
+                return null;
+              },
+              onSaved: (value) => _userName = value!,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: 'Email'),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your email';
+                }
+                return null;
+              },
+              onSaved: (value) => _email = value!,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: 'Password'),
+              obscureText: true,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your password';
+                }
+                return null;
+              },
+              onSaved: (value) => _password = value!,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: 'Confirm Password'),
+              obscureText: true,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please confirm your password';
+                } else if (value != _password) {
+                  return 'Passwords do not match';
+                }
+                return null;
+              },
+              onSaved: (value) => _confirmPassword = value!,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: 'Address'),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your address';
+                }
+                return null;
+              },
+              onSaved: (value) => _address = value!,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    // Perform form submission logic here.
+                  }
+                },
+                child: const Text('Update Profile'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    )
+    );
+    
+    
+  }
+}
