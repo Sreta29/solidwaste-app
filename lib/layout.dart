@@ -6,7 +6,7 @@ import 'package:homepage/payment.dart';
 import 'package:homepage/setting.dart';
 
 class Layout extends StatefulWidget{
-    const Layout({Key? key}):super(key: key);
+    const Layout({super.key});
 
   
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:homepage/login_page.dart';
 import 'package:homepage/register_page.dart';
-import 'package:homepage/signup_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,17 +17,16 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        '/login': (context) => LoginPage(),
+        '/login': (context) => const LoginPage(),
         '/register': (context) => RegisterPage(),
       },
-      home: const SplashScreen(),
+      home: const WelcomePage(),
     );
   }
 }
 
-class SplashScreen extends StatelessWidget {
+/*class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class SplashScreen extends StatelessWidget {
         return Scaffold(
           body: Center(
             child: ElevatedButton(
-              child: const Text('Open route'),
+              child: const Text('Move to Welcome Page'),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -50,12 +49,10 @@ class SplashScreen extends StatelessWidget {
       },
     );
   }
-}
+}*/
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
-  
-  
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +123,7 @@ class WelcomePage extends StatelessWidget {
                       fontSize: 15,
                       color: Colors.black,
                     ),
-                    ),
+                  ),
                 ),
               ],
             ),

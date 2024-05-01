@@ -1,8 +1,10 @@
+//import 'dart:io';
+//import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:homepage/homepage.dart';
 
 class UpdateProfilePage extends StatefulWidget{
-    const UpdateProfilePage({Key? key, required String userName, required String userProfilePicture}) : super(key: key);
+    const UpdateProfilePage({super.key, required String userName, required String userProfilePicture});
 
   @override
   State<UpdateProfilePage> createState() => _UpdateProfilePageState();
@@ -20,6 +22,8 @@ class _UpdateProfilePageState extends State<UpdateProfilePage>{
           
         });
   }
+
+
 
   final _formKey = GlobalKey<FormState>();
 
@@ -39,12 +43,12 @@ class _UpdateProfilePageState extends State<UpdateProfilePage>{
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-setState(() {
-  changePage = !changePage;
-});           
+            setState(() {
+              changePage = !changePage;
+            });           
           },
         ),
-        title: const Text('Update Profile'),
+        title: const Text('Update Profile Page'),
       ),
       body:  Form(
       key: _formKey,
@@ -52,6 +56,7 @@ setState(() {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
+            
             TextFormField(
               decoration: const InputDecoration(labelText: 'Name'),
               validator: (value) {
@@ -132,8 +137,6 @@ setState(() {
         ),
       ),
     )
-    );
-    
-    
+    );  
   }
 }

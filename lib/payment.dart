@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({Key? key}) : super(key: key);
+  const PaymentPage({super.key});
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
@@ -10,7 +9,6 @@ class PaymentPage extends StatefulWidget {
 
 class _PaymentPageState extends State<PaymentPage> {
   bool _isPaymentCompleted = false;
-  static const platform = MethodChannel('com.example.sabahpay/payment');
 
   // Function to simulate payment process
   void _processPayment() {
@@ -36,15 +34,6 @@ class _PaymentPageState extends State<PaymentPage> {
     print('Digital receipt sent to user');
   }
 
-  Future<void> _startPayment() async {
-    try {
-      // Call method on platform channel to start payment
-      await platform.invokeMethod('startPayment');
-    } on PlatformException catch (e) {
-      // Handle error
-      print("Failed to start payment: '${e.message}'.");
-    }
-  }
 
   @override
   void initState() {
@@ -52,60 +41,33 @@ class _PaymentPageState extends State<PaymentPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
       title: const Text("Payment Page"),
     ),
     body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Payment details input fields
-            const TextField(
-              decoration: InputDecoration(labelText: 'Bank Account Number'),
+      child: _isPaymentCompleted
+          ? const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  Icons.check_circle,
+                  color: Colors.green,
+                  size: 100,
+                ),
+                Text(
+                  'Payment Successful!',
+                  style: TextStyle(fontSize: 24),
+                ),
+              ],
+            )
+          : ElevatedButton(
+              onPressed: _processPayment,
+              child: const Text('Proceed to Payment'),
             ),
-            const TextField(
-              decoration: InputDecoration(labelText: 'Amount'),
-            ),
-            // Button to initiate payment
-            ElevatedButton(
-              onPressed: () {
-                // Call backend API to initiate payment
-                
-              },
-              child: const Text('Pay with FPX'),
-            ),
-          ],
-        ),
-      ),
+    ),
   );
 }
-
-  /*void initiatePayment() async {
-  String bankAccountNumber = ...; // Retrieve bank account number from text field
-  String amount = ...; // Retrieve amount from text field
-  
-  // Make POST request to backend API
-  var response = await http.post(
-    Uri.parse('http://your-backend-url/fpx/payment'),
-    headers: <String, String>{
-      'Content-Type': 'application/json',
-    },
-    body: jsonEncode(<String, dynamic>{
-      'bankAccountNumber': bankAccountNumber,
-      'amount': amount,
-    }),
-  );*/
-
-  // Handle response from backend
-  /*if (response.statusCode == 200) {
-    var responseData = jsonDecode(response.body);
-    String paymentStatus = responseData['status'];
-    // Handle payment status, show success or failure to the user
-  } else {
-    // Handle error response from backend
-    print('Failed to initiate payment: ${response.statusCode}');
-  }*/
 
 }

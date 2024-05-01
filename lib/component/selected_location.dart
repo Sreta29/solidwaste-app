@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SelectedLocation extends StatefulWidget{
-    const SelectedLocation({Key? key}): super(key: key);
+    const SelectedLocation({super.key});
 
   @override
   State<SelectedLocation> createState() => _SelectedLocationState();

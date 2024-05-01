@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:homepage/update_profile.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,57 +10,56 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   bool changePage = false;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
     setState(() {
-          changePage = !changePage;
-        });
+      changePage = !changePage;
+    });
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
-    if(!changePage){
-   return const  UpdateProfilePage(
-    userName: '',
-    userProfilePicture: '',
-   );
+    if (!changePage) {
+      return const UpdateProfilePage(
+        userName: '',
+        userProfilePicture: '',
+      );
     }
     return Scaffold(
-    
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
           // User profile section
-           Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
                 onTap: () {
                   setState(() {
-                           changePage = !changePage;
-                                    });
-  
-                                },
-                child: const CircleAvatar(
-                radius: 50,
-                // Placeholder profile image, replace with actual user's profile picture
-                backgroundImage: AssetImage('assets/images/profile_icon.png'),
-              ),),
-              
+                    changePage = !changePage;
+                  });
+                },
+                child: const ProfilePicture(
+    name: 'Aditya Dharmawan Saputra',
+    role: 'ADMINISTRATOR',
+    radius: 31,
+    fontsize: 21,
+    tooltip: true,
+    img: 'assets/images/pp_icon.png',
+)
+              ),
               const SizedBox(height: 10),
-             const  Text(
-                //'Hi, $username!',
+              const Text(
                 'Welcome to Solid Waste Sales and Collection System',
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
                 ),
-              ), 
+              ),
             ],
           ),
           const SizedBox(height: 20),
