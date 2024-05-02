@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_profile_picture/flutter_profile_picture.dart';
+
 import 'package:homepage/update_profile.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({required key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _HomePageState();
@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     setState(() {
-      changePage = !changePage;
+      changePage = false;
     });
   }
 
@@ -43,14 +43,19 @@ class _HomePageState extends State<HomePage> {
                     changePage = !changePage;
                   });
                 },
-                child: const ProfilePicture(
-    name: 'Aditya Dharmawan Saputra',
-    role: 'ADMINISTRATOR',
-    radius: 31,
-    fontsize: 21,
-    tooltip: true,
-    img: 'assets/images/pp_icon.png',
-)
+                child: const Row(
+                  children: [
+                    
+                    SizedBox(width: 10),
+                    Text(
+                      'User Name', // Replace with actual user name
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 10),
               const Text(
@@ -101,4 +106,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 }
+
+
 

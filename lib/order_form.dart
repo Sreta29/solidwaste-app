@@ -51,9 +51,8 @@ class _OrderFormState extends State<OrderForm> {
   Future<void> _uploadPhotos() async {
     final pickedImages = await _picker.pickMultiImage();
     setState(() {
-      order.selectedImages = pickedImages
-          .map((pickedImage) => File(pickedImage.path))
-          .toList();
+      order.selectedImages =
+          pickedImages.map((pickedImage) => File(pickedImage.path)).toList();
     });
   }
 
@@ -152,7 +151,7 @@ class _OrderFormState extends State<OrderForm> {
                   items: const [
                     DropdownMenuItem<String>(
                       value: 'Bandar Penggaram',
-                      child: Text('Bandar Pneggaram'),
+                      child: Text('Bandar Penggaram'),
                     ),
                     DropdownMenuItem<String>(
                       value: 'Ayer Hitam',
@@ -230,7 +229,7 @@ class _OrderFormState extends State<OrderForm> {
               child: const Text('Upload Photos'),
             ),
             const SizedBox(height: 16),
-ElevatedButton(
+            ElevatedButton(
               onPressed: _submitForm,
               child: const Text('Submit'),
             ),
@@ -240,8 +239,9 @@ ElevatedButton(
               spacing: 8.0,
               runSpacing: 8.0,
               children: order.selectedImages
-                  ?.map((image) => Image.file(image, width: 100, height: 100))
-                  .toList() ??
+                      ?.map(
+                          (image) => Image.file(image, width: 100, height: 100))
+                      .toList() ??
                   [],
             ),
           ],

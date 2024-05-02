@@ -18,7 +18,7 @@ class _LayoutState extends State<Layout> {
 
 
    List<Widget> tabs = [
-   const HomePage(),
+   const HomePage(key: null,),
    const OrderForm(orderNumber: '',),
    const PaymentPage(),
    const SettingPage()
